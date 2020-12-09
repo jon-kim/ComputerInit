@@ -1,4 +1,4 @@
-# Computer Init
+# Windows init
 
 * Chocolatey
 * Chrome
