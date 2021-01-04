@@ -9,11 +9,11 @@
 
 # RPi
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo apt autoclean  
-sudo vim /etc/ssh/sshd_config
-sudo apt install apt-transport-https dirmngr gnupg ca-certificates
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-echo "deb https://download.mono-project.com/repo/debian stable-raspbianbuster main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-sudo apt update
+sudo vim /etc/ssh/sshd_config  
+sudo apt install apt-transport-https dirmngr gnupg ca-certificates  
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF  
+echo "deb https://download.mono-project.com/repo/debian stable-raspbianbuster main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list  
+sudo apt update  
 sudo apt install mono-complete
 
 
@@ -21,11 +21,11 @@ sudo apt install mono-complete
 sudo apt install vim -y
 
 ### Mount USB Drive
-sudo apt-get install ntfs-3g
-sudo mkdir /media/usb
-sudo chmod 770 /media/usb
-sudo mount /dev/sda1 /media/usb
-sudo cp /etc/fstab /etc/fstab.backup
+sudo apt-get install ntfs-3g  
+sudo mkdir /media/usb  
+sudo chmod 770 /media/usb  
+sudo mount /dev/sda1 /media/usb  
+sudo cp /etc/fstab /etc/fstab.backup  
 sudo vim /etc/fstab  
 `/dev/sda1 /media/usb ntfs defaults 0 0`
 
