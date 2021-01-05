@@ -9,7 +9,7 @@
 
 # RPi
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo apt autoclean  
-sudo vim /etc/ssh/sshd_config  
+sudo nano /etc/ssh/sshd_config  
 sudo apt install apt-transport-https dirmngr gnupg ca-certificates  
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF  
 echo "deb https://download.mono-project.com/repo/debian stable-raspbianbuster main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list  
@@ -17,29 +17,26 @@ sudo apt update
 sudo apt install mono-complete
 
 
-### VIM
-sudo apt install vim -y
-
 ### Mount USB Drive
 sudo apt-get install ntfs-3g  
 sudo mkdir /media/usb  
 sudo chmod 770 /media/usb  
 sudo mount /dev/sda1 /media/usb  
 sudo cp /etc/fstab /etc/fstab.backup  
-sudo vim /etc/fstab  
+sudo nano /etc/fstab  
 `/dev/sda1 /media/usb ntfs defaults 0 0`
 
 ### Samba
 sudo apt install samba samba-common-bin -y  
-sudo vim /etc/samba/smb.conf  
+sudo nano /etc/samba/smb.conf  
 `[usb]  
    path = /media/usb  
    writeable=Yes  
    create mask=0777  
    directory mask=0777  
    public=no`
-* sudo smbpasswd -a pi  
-* sudo systemctl restart smbd
+sudo smbpasswd -a pi  
+sudo systemctl restart smbd
 
 ### Transmission
 sudo apt install transmission-daemon -y  
@@ -48,16 +45,16 @@ mkdir -p /media/usb/torrent-inprogress
 mkdir -p /media/usb/torrent-complete  
 sudo chown -R pi:pi /media/usb/torrent-inprogress  
 sudo chown -R pi:pi /media/usb/torrent-complete  
-sudo vim /etc/transmission-daemon/settings.json  
+sudo nano /etc/transmission-daemon/settings.json  
 `"incomplete-dir": "/media/usb/torrent-inprogress",  
 "download-dir": "/media/usb/torrent_complete",  
 "incomplete-dir-enabled": true,  
 "rpc-password": "Your_Password",  
 "rpc-username": "Your_Username",  
 "rpc-whitelist": "192.168.*.*",`  
-sudo vim /etc/init.d/transmission-daemon  
+sudo nano /etc/init.d/transmission-daemon  
 `USER=pi`  
-sudo vim /etc/systemd/system/multi-user.target.wants/transmission-daemon.service  
+sudo nano /etc/systemd/system/multi-user.target.wants/transmission-daemon.service  
 `user=pi`  
 sudo systemctl daemon-reload  
 sudo chown -R pi:pi /etc/transmission-daemon  
@@ -67,27 +64,94 @@ sudo chown -R pi:pi /home/pi/.config/transmission-daemon/
 sudo systemctl start transmission-daemon
 
 ### NZBGET
+sudo apt install nzbget -y  
+sudo nano /etc/systemd/system/nzbget.service  
+`
+[Unit]
+Description=NZBGet Binary News File Grabber
+After=network.target
 
+[Service]
+Type=forking
+User=pi
+Group=pi
+ExecStart=/usr/bin/nzbget --daemon --configfile /etc/nzbget.conf
+ExecReload=/usr/bin/nzbget --reload
+ExecStop=/usr/bin/nzbget --quit
+Restart=always
+SyslogIdentifier=NZBGet
 
+[Install]
+WantedBy=multi-user.target
+`
+sudo systemctl daemon-reload  
+sudo systemctl enable nzbget 
+sudo nano /etc/nzbget.conf
+`
+MainDir=/media/usb/nzbget  
+ControlIP=0.0.0.0
+`
+sudo chown pi:pi /etc/nzbget.conf
+sudo systemctl start nzbget  
 
+### Sonarr
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0xA236C58F409091A18ACA53CBEBFF6B99D9B78493  
+echo "deb http://apt.sonarr.tv/ master main" | sudo tee /etc/apt/sources.list.d/sonarr.list  
+sudo apt update  
+sudo apt install nzbdrone -y  
+sudo chown -R pi:pi /opt/NzbDrone
+sudo nano /etc/systemd/system/sonarr.service  
+'
+[Unit]
+Description=Sonarr Daemon
+After=network.target
+ 
+[Service]
+User=pi
+Group=pi
+ 
+Type=simple
 
+ExecStart=/usr/bin/mono --debug /opt/NzbDrone/NzbDrone.exe -nobrowser -data=/opt/NzbDrone/config
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+RestartSec=5
+ 
+[Install]
+WantedBy=multi-user.target
+'
+sudo systemctl daemon-reload  
+sudo systemctl enable sonarr  
+sudo systemctl start sonarr  
 
+### Radarr
 
+curl -sL "https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=arm64" -o /tmp/Radarr.tgz  
+sudo tar xvzf /tmp/Radarr.tgz -C /opt/
+sudo rm -rf /tmp/Radarr.tgz  
+sudo chown -R pi:pi /opt/Radarr  
+sudo nano /etc/systemd/system/radarr.service  
+'
+[Unit]
+Description=Radarr Daemon
+After=network.target
+ 
+[Service]
+User=pi
+Group=pi
+ 
+Type=simple
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ExecStart=/opt/Radarr/Radarr -nobrowser -data=/opt/Radarr/config
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+RestartSec=5
+ 
+[Install]
+WantedBy=multi-user.target
+'  
+sudo systemctl daemon-reload  
+sudo systemctl enable radarr  
+sudo systemctl start radarr  
