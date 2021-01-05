@@ -16,6 +16,16 @@ echo "deb https://download.mono-project.com/repo/debian stable-raspbianbuster ma
 sudo apt update  
 sudo apt install mono-complete
 
+### UnRAR
+sudo apt-get remove unrar-free & sudo apt autoremove & sudo apt autoclean  
+sudo nano /etc/apt/sources.list  
+uncomment 'deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi'  
+cd /tmp
+sudo apt update
+sudo apt-get build-dep unrar-nonfree
+sudo apt-get source -b unrar-nonfree
+sudo dpkg -i unrar*.deb
+
 
 ### Mount USB Drive
 sudo apt-get install ntfs-3g  
@@ -64,7 +74,7 @@ sudo chown -R pi:pi /home/pi/.config/transmission-daemon/
 sudo systemctl start transmission-daemon
 
 ### NZBGET
-sudo apt install nzbget -y  
+sudo apt install nzbget 7zip-full -y  
 sudo nano /etc/systemd/system/nzbget.service  
 `
 [Unit]
@@ -93,6 +103,7 @@ ControlIP=0.0.0.0
 `
 sudo chown pi:pi /etc/nzbget.conf
 sudo systemctl start nzbget  
+change settings->unpack->
 
 ### Sonarr
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0xA236C58F409091A18ACA53CBEBFF6B99D9B78493  
