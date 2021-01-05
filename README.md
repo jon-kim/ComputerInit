@@ -112,7 +112,7 @@ Group=pi
  
 Type=simple
 
-ExecStart=/usr/bin/mono --debug /opt/NzbDrone/NzbDrone.exe -nobrowser -data=/opt/NzbDrone/config
+ExecStart=/usr/bin/mono --debug /opt/NzbDrone/NzbDrone.exe -nobrowser -data=/opt/config/NzbDrone
 TimeoutStopSec=20
 KillMode=process
 Restart=on-failure
@@ -127,7 +127,7 @@ sudo systemctl start sonarr
 
 ### Radarr
 
-curl -sL "https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=arm64" -o /tmp/Radarr.tgz  
+curl -L  "https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=arm" -o /tmp/Radarr.tgz --progress-bar  
 sudo tar xvzf /tmp/Radarr.tgz -C /opt/
 sudo rm -rf /tmp/Radarr.tgz  
 sudo chown -R pi:pi /opt/Radarr  
@@ -143,7 +143,7 @@ Group=pi
  
 Type=simple
 
-ExecStart=/opt/Radarr/Radarr -nobrowser -data=/opt/Radarr/config
+ExecStart=/opt/Radarr/Radarr -nobrowser -data=/opt/config/Radarr
 TimeoutStopSec=20
 KillMode=process
 Restart=on-failure
