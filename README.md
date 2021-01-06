@@ -79,8 +79,7 @@ sudo systemctl start transmission-daemon
 ### NZBGET
 sudo apt install nzbget 7zip-full -y  
 sudo nano /etc/systemd/system/nzbget.service  
-`
-[Unit]
+`[Unit]
 Description=NZBGet Binary News File Grabber
 After=network.target
 
@@ -98,13 +97,11 @@ SyslogIdentifier=NZBGet
 WantedBy=multi-user.target
 `  
 sudo systemctl daemon-reload  
-sudo systemctl enable nzbget 
-sudo nano /etc/nzbget.conf
-`  
-MainDir=/media/usb/nzbget  
-ControlIP=0.0.0.0
-`  
-sudo chown pi:pi /etc/nzbget.conf
+sudo systemctl enable nzbget  
+sudo nano /etc/nzbget.conf  
+`MainDir=/media/usb/nzbget  
+ControlIP=0.0.0.0`  
+sudo chown pi:pi /etc/nzbget.conf  
 sudo systemctl start nzbget  
 
 ### Sonarr
