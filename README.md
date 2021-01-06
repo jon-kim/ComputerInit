@@ -22,10 +22,10 @@ sudo apt install mono-complete -y
 sudo apt-get remove unrar-free & sudo apt autoremove & sudo apt autoclean  
 sudo nano /etc/apt/sources.list  
 uncomment 'deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi'  
-cd /tmp
-sudo apt update
-sudo apt-get build-dep unrar-nonfree
-sudo apt-get source -b unrar-nonfree
+cd /tmp  
+sudo apt update  
+sudo apt-get build-dep unrar-nonfree  
+sudo apt-get source -b unrar-nonfree  
 sudo dpkg -i unrar*.deb
 
 
