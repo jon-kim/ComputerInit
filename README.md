@@ -109,10 +109,9 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0xA236C58F409091A1
 echo "deb http://apt.sonarr.tv/ master main" | sudo tee /etc/apt/sources.list.d/sonarr.list  
 sudo apt update  
 sudo apt install nzbdrone -y  
-sudo chown -R pi:pi /opt/NzbDrone
+sudo chown -R pi:pi /opt/NzbDrone  
 sudo nano /etc/systemd/system/sonarr.service  
-'
-[Unit]
+`[Unit]
 Description=Sonarr Daemon
 After=network.target
  
@@ -129,8 +128,7 @@ Restart=on-failure
 RestartSec=5
  
 [Install]
-WantedBy=multi-user.target
-'
+WantedBy=multi-user.target`  
 sudo systemctl daemon-reload  
 sudo systemctl enable sonarr  
 sudo systemctl start sonarr  
@@ -142,8 +140,7 @@ sudo tar xvzf /tmp/Radarr.tgz -C /opt/
 sudo rm -rf /tmp/Radarr.tgz  
 sudo chown -R pi:pi /opt/Radarr  
 sudo nano /etc/systemd/system/radarr.service  
-'
-[Unit]
+`[Unit]
 Description=Radarr Daemon
 After=network.target
  
@@ -160,8 +157,7 @@ Restart=on-failure
 RestartSec=5
  
 [Install]
-WantedBy=multi-user.target
-'  
+WantedBy=multi-user.target`  
 sudo systemctl daemon-reload  
 sudo systemctl enable radarr  
 sudo systemctl start radarr  
