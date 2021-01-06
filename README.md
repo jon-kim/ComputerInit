@@ -138,7 +138,7 @@ sudo systemctl start sonarr
 ### Radarr
 
 curl -L  "https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=arm" -o /tmp/Radarr.tgz --progress-bar  
-sudo tar xvzf /tmp/Radarr.tgz -C /opt/
+sudo tar xvzf /tmp/Radarr.tgz -C /opt/  
 sudo rm -rf /tmp/Radarr.tgz  
 sudo chown -R pi:pi /opt/Radarr  
 sudo nano /etc/systemd/system/radarr.service  
