@@ -45,8 +45,10 @@ sudo nano /etc/samba/smb.conf
    writeable=Yes  
    create mask=0777  
    directory mask=0777  
-   public=no`
+   public=no`  
 sudo smbpasswd -a pi  
+sudo usermod -a -G sambashare pi  
+sudo usermod -a -G root pi  
 sudo systemctl restart smbd
 
 ### Transmission
