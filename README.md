@@ -96,17 +96,16 @@ SyslogIdentifier=NZBGet
 
 [Install]
 WantedBy=multi-user.target
-`
+`  
 sudo systemctl daemon-reload  
 sudo systemctl enable nzbget 
 sudo nano /etc/nzbget.conf
-`
+`  
 MainDir=/media/usb/nzbget  
 ControlIP=0.0.0.0
-`
+`  
 sudo chown pi:pi /etc/nzbget.conf
 sudo systemctl start nzbget  
-change settings->unpack->
 
 ### Sonarr
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0xA236C58F409091A18ACA53CBEBFF6B99D9B78493  
