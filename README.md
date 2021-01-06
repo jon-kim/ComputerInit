@@ -33,10 +33,9 @@ sudo dpkg -i unrar*.deb
 sudo apt-get install ntfs-3g  
 sudo mkdir /media/usb  
 sudo chmod 770 /media/usb  
-sudo mount /dev/sda1 /media/usb  
 sudo cp /etc/fstab /etc/fstab.backup  
 sudo nano /etc/fstab  
-`/dev/sda1 /media/usb ntfs defaults 0 0`
+`/dev/sda1 /media/usb ntfs uid=pi,gid=pi 0 0`
 
 ### Samba
 sudo apt install samba samba-common-bin -y  
