@@ -129,7 +129,7 @@ RestartSec=5
  
 [Install]
 WantedBy=multi-user.target`  
-sudo mkdir /opt/config/NzbDrone  
+sudo mkdir -p /opt/config/NzbDrone  
 sudo chown -R pi:pi /opt/config/NzbDrone  
 sudo systemctl daemon-reload  
 sudo systemctl enable sonarr  
@@ -160,7 +160,7 @@ RestartSec=5
  
 [Install]
 WantedBy=multi-user.target`  
-sudo mkdir /opt/config/Radarr  
+sudo mkdir -p /opt/config/Radarr  
 sudo chown -R pi:pi /opt/config/Radarr  
 sudo systemctl daemon-reload  
 sudo systemctl enable radarr  
