@@ -9,7 +9,6 @@
 
 # RPig
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo apt autoclean  
-sudo apt install usbmount -y  
 sudo nano /etc/ssh/sshd_config  
 change port  
 sudo apt install apt-transport-https dirmngr gnupg ca-certificates  
