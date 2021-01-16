@@ -22,12 +22,12 @@ sudo nano /etc/fstab
 `UUID=A24A38FB4A38CDB3 /media/usb ntfs defaults,auto,users,rw,nofail,umask=000 0 0`  
 
 ### Samba
-sudo apt install samba samba-common-bin -y
-sudo nano /etc/samba/smb.conf
-[usb] path = /media/usb writeable=Yes create mask=0777 directory mask=0777 public=no
-sudo smbpasswd -a pi
-sudo usermod -a -G sambashare pi
-sudo usermod -a -G root pi
+sudo apt install samba samba-common-bin -y  
+sudo nano /etc/samba/smb.conf  
+[usb] path = /media/usb writeable=Yes create mask=0777 directory mask=0777 public=yes  
+sudo smbpasswd -a pi  
+sudo usermod -a -G sambashare pi  
+sudo usermod -a -G root pi  
 sudo systemctl restart smbd  
 
 ### Plex Server
