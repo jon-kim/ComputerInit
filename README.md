@@ -10,11 +10,7 @@
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo apt autoclean  
 sudo nano /etc/ssh/sshd_config  
 change port  
-sudo apt install apt-transport-https  
-curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -  
-echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list  
-sudo apt update  
-sudo apt install plexmediaserver -y  
+sudo reboot  
 
 ### Mount USB Drive
 sudo apt-get install ntfs-3g  
@@ -22,8 +18,14 @@ sudo mkdir /media/usb
 sudo chmod 770 /media/usb  
 sudo cp /etc/fstab /etc/fstab.backup  
 sudo nano /etc/fstab  
-`/dev/sda1 /media/usb ntfs uid=pi,gid=pi 0 0`
+`/dev/sda1 /media/usb ntfs uid=pi,gid=pi 0 0`  
 
+### Plex Server
+sudo apt install apt-transport-https  
+curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -  
+echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list  
+sudo apt update  
+sudo apt install plexmediaserver -y  
 
 # RPig
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove && sudo apt autoclean  
