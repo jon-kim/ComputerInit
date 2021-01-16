@@ -15,10 +15,11 @@ sudo reboot
 ### Mount USB Drive
 sudo apt-get install ntfs-3g  
 sudo mkdir /media/usb  
-sudo chmod 770 /media/usb  
-sudo cp /etc/fstab /etc/fstab.backup  
+sudo chmod 777 /media/usb  
+sudo cp /etc/fstab /etc/fstab.backup
+sudo blkid  
 sudo nano /etc/fstab  
-`/dev/sda1 /media/usb ntfs uid=pi,gid=pi 0 0`  
+`UUID=A24A38FB4A38CDB3 /media/usb ntfs defaults,auto,users,rw,nofail,umask=000 0 0`  
 
 ### Plex Server
 sudo apt install apt-transport-https  
