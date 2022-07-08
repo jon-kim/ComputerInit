@@ -209,6 +209,12 @@ chown -R newuser:newuser /home/newuser/.ssh
 sudo apt install -y apache2 php libapache2-mod-php php-curl php-gd php-json php-mbstring php-xml mysql-server php-mysql  
   
 sudo a2enmod rewrite  
+sudo a2enmod proxy  
+sudo a2enmod proxy_http  
+sudo a2enmod proxy_balancer  
+sudo a2enmod lbmethod_byrequests  
+sudo a2enmod ssl  
+sudo systemctl restart apache2  
   
 sudo mysql_secure_installation  
 &emsp;sudo mysql  
