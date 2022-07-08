@@ -196,6 +196,8 @@ sudo systemctl enable radarr
 sudo systemctl start radarr  
 
 # YellowSnow
+sudo apt update && sudo apt upgrade -y  
+  
 adduser newuser  
 usermod -aG sudo newuser  
 mkdir /home/newuser/.ssh  
@@ -204,10 +206,10 @@ cp /root/.ssh/authorized_keys /home/newuser/.ssh/authorized_keys
 chmod 600 /home/newuser/.ssh/authorized_keys  
 chown -R newuser:newuser /home/newuser/.ssh  
   
-sudo apt update && sudo apt upgrade -y  
-sudo apt install -y apache2  
-sudo systemctl status apache2  
-sudo apt install -y php libapache2-mod-php php-curl php-gd php-json php-mbstring php-xml mysql-server php-mysql  
+sudo apt install -y apache2 php libapache2-mod-php php-curl php-gd php-json php-mbstring php-xml mysql-server php-mysql  
+  
+sudo a2enmod rewrite  
+  
 sudo mysql_secure_installation  
 &emsp;sudo mysql  
 &emsp;ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'password';  
