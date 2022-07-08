@@ -209,6 +209,6 @@ sudo apt install -y apache2
 sudo systemctl status apache2  
 sudo apt install -y php libapache2-mod-php php-curl php-gd php-json php-mbstring php-xml mysql-server php-mysql  
 sudo mysql_secure_installation  
-   sudo mysql  
-   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'password';  
-   sudo mysql_secure_installation  
+&emsp;sudo mysql  
+&emsp;ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'password';  
+&emsp;sudo mysql_secure_installation  
