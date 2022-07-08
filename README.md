@@ -202,7 +202,7 @@ mkdir /home/newuser/.ssh
 chmod 700 /home/newuser/.ssh  
 cp /root/.ssh/authorized_keys /home/newuser/.ssh/authorized_keys  
 chmod 600 /home/newuser/.ssh/authorized_keys  
-chown -R newuser:newuser /home/<user>/.ssh  
+chown -R newuser:newuser /home/newuser/.ssh  
   
 sudo apt update && sudo apt upgrade -y  
 sudo apt install -y apache2  
