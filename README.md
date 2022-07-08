@@ -195,7 +195,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable radarr  
 sudo systemctl start radarr  
 
-### YellowSnow
+# YellowSnow
 adduser newuser  
 usermod -aG sudo newuser  
 mkdir /home/newuser/.ssh  
