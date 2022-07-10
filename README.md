@@ -221,12 +221,14 @@ sudo mysql_secure_installation
 &emsp;ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'password';  
 &emsp;sudo mysql_secure_installation  
 
-vim ~/.vimrc
-set number
-syntax on
-colorscheme koehler
-set tabstop=4
-set autoindent
-set expandtab
-set softtabstop=4
-set cursorline
+vim ~/.vimrc  
+set number  
+syntax on  
+colorscheme koehler  
+set tabstop=4  
+set autoindent  
+set expandtab  
+set softtabstop=4  
+set cursorline  
+  
+  
