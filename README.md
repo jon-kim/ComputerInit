@@ -214,6 +214,7 @@ sudo a2enmod proxy_http
 sudo a2enmod proxy_balancer  
 sudo a2enmod lbmethod_byrequests  
 sudo a2enmod ssl  
+a2enmod vhost_alias  
 sudo systemctl restart apache2  
   
 sudo mysql_secure_installation  
