@@ -231,5 +231,5 @@ set autoindent
 set expandtab  
 set softtabstop=4  
 set cursorline  
-  
+sudo -E vim
   
